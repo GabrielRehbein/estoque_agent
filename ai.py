@@ -17,5 +17,4 @@ class AIBot:
 
 
 if __name__ == '__main__':
-    bot = AIBot('gpt-3.5-turbo-0125')
-    print(bot.invoke())
+    ...

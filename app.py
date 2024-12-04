@@ -6,7 +6,8 @@ from ai import AIBot
 
 
 def main():
-    
+    message_history = []
+
     st.set_page_config(
         page_title='Agente de Estoque',
         page_icon='🤖',
@@ -20,19 +21,30 @@ def main():
         GPT_4_TURBO,
     ]
 
-    llm = st.radio(
-    label='Escolha a Versão:',
-    options=llm_options,
+    st.sidebar.title("GPT'S")
+    llm = st.sidebar.radio(
+    label='Selecione o Modelo:',
+    options=llm_options
     )
+
+
     if llm:
         bot_ai = AIBot(llm=llm)
 
-    question = st.text_input(
-        label='Digite Sua Pergunta...',
-        max_chars=300,
-    )
-    ai_response = bot_ai._invoke(question)
-    st.write(ai_response)
-    print(llm)
+    if message_history:
+        for message in message_history:
+            st.write(message)
 
-main()
+    question = st.chat_input(placeholder='Consulte...')
+
+
+
+    if question:
+        
+        message_history.append(question)
+        ai_response = bot_ai._invoke(question)
+        st.write('User: ',question)
+        st.write('AI: ', ai_response)
+        
+if __name__ == '__main__':
+    main()
