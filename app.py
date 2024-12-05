@@ -42,7 +42,8 @@ def main():
     if question:
         
         message_history.append(question)
-        ai_response = bot_ai._invoke(question)
+        formatted_question = bot_ai.format_prompt(question)
+        ai_response = bot_ai.genarator_ai_response(formatted_question)
         st.write('User: ',question)
         st.write('AI: ', ai_response)
         
