@@ -18,7 +18,7 @@ class AIBot:
         self.__llm = ChatOpenAI(
             model=llm,
         )
-        self.__db = SQLDatabase.from_uri('sqlite:///estoque.db')
+        self.__db = SQLDatabase.from_uri('sqlite:///src/estoque.db')
         self.my_prompt = default_prompt
 
     def __get_system_prompt(self):
