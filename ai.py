@@ -22,10 +22,6 @@ class AIBot:
         self.my_prompt = default_prompt
 
     
-    
-    def _invoke(self, question):
-        return self.__llm.invoke(question).content
-
     def __get_system_prompt(self):
         #ok
         system_prompt = hub.pull('hwchase17/react')
@@ -56,7 +52,6 @@ class AIBot:
             agent=self.__create_agent(),
             tools=sql_toolkit.get_tools(),
             verbose=True,
-            handle_parsing_errors=True
         )
         print(f'agent_executor {agent_executor}')
         return agent_executor
@@ -73,7 +68,7 @@ class AIBot:
         formatted_prompt = prompt_template.format(q=user_question)
         return formatted_prompt
 
-    def genarator_ai_response(self, formatted_prompt):
+    def generate_ai_response(self, formatted_prompt):
         agent_executed = self.__agent_executor_configuration()
         response = agent_executed.invoke({"input": formatted_prompt})
         print(f'response {response}')
@@ -81,6 +76,7 @@ class AIBot:
 
 
 if __name__ == '__main__':
-    botai = AIBot('gpt-3.5-turbo-0125')
-    q = botai.format_prompt('produto mais barato')
-    botai.genarator_ai_response(q)
+    botai = AIBot('gpt-4')
+    q = botai.format_prompt('consgue me dizer o nosso supplier mais frequente?')
+    print(q)
+    botai.generate_ai_response(q)
