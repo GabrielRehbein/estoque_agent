@@ -40,7 +40,8 @@ def main():
         with st.spinner('Consultando o Banco de Dados'):
             formatted_question = bot_ai.format_prompt(question)
             ai_response = bot_ai.generate_ai_response(formatted_question)
-            st.write('ASSISTENTE: ', ai_response)
+            st.image("media/ai-ai-svgrepo-com.svg", width=30)
+            st.markdown(ai_response)
 
 
 if __name__ == '__main__':
