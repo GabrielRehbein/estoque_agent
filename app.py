@@ -1,6 +1,6 @@
 import streamlit as st
 
-from option_llm_version import GPT_3_TURBO, GPT_4, GPT_4_TURBO
+from llm_version_options import GPT_3_TURBO, GPT_4, GPT_4_TURBO
 
 from ai import AIBot
 
@@ -23,10 +23,9 @@ def main():
 
     st.sidebar.title("GPT'S")
     llm = st.sidebar.radio(
-    label='Selecione o Modelo:',
-    options=llm_options
+        label='Selecione o Modelo:',
+        options=llm_options
     )
-
 
     if llm:
         bot_ai = AIBot(llm=llm)
@@ -37,13 +36,12 @@ def main():
 
     question = st.chat_input(placeholder='Consulte...')
 
-
-
     if question:
         with st.spinner('Consultando o Banco de Dados'):
             formatted_question = bot_ai.format_prompt(question)
             ai_response = bot_ai.generate_ai_response(formatted_question)
             st.write('ASSISTENTE: ', ai_response)
+
 
 if __name__ == '__main__':
     main()
